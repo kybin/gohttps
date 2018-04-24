@@ -24,23 +24,20 @@ func redirectHandler(port string) http.HandlerFunc {
 	}
 }
 
-var Usage = `usage: gohttps addr [https-port=443]
+var Usage = `usage: gohttps addr https-port
 
-  gohttps :80
+  gohttps :80 443
   gohttps :80 8443
 `
 
 func main() {
 	args := os.Args[1:]
-	if len(args) == 0 || len(args) > 2 {
+	if len(args) != 2 {
 		fmt.Fprintln(os.Stderr, Usage)
 		os.Exit(1)
 	}
 	addr := args[0]
-	httpsPort := "443"
-	if len(args) == 2 {
-		httpsPort = args[1]
-	}
+	httpsPort := args[1]
 	if _, err := strconv.Atoi(httpsPort); err != nil {
 		fmt.Fprintln(os.Stderr, Usage)
 		fmt.Fprintln(os.Stderr, "https-port follows same origin policy. In example, do '443' instead of ':443'.")

@@ -11,6 +11,6 @@ $ go get github.com/kybin/gohttps
 ## Usage
 
 ```
-$ gohttps :80
+$ gohttps :80 443
 $ gohttps :80 8443
 ```
